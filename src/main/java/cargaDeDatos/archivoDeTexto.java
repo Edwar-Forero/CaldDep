@@ -7,7 +7,18 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+/**
+ * Esta clase permite cargar los datos de un archivo de texto
+ * @author Santiago Anibal Carrillo Torres, Edwar Yamir Forero Blanco, Juan Eduardo Calderon
+ * @version 1.0
+ */
+
 public class archivoDeTexto {
+    /**
+     * Este método permite cargar los datos de un archivo de texto
+     * @param args mensaje que se muestra en la ventana de carga de archivos
+     *
+     */
     public static void main(String[] args) {
         // Crear un objeto JFileChooser
         JFileChooser fileChooser = new JFileChooser();
