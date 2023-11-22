@@ -1,5 +1,5 @@
 # CaldDep
-**Proyecto final de Análisis y diseño de algoritmos**
+**Proyecto final de Análisis y diseño de algoritmos**\n
 Consiste en un algoritmo que permita de la manera más óptima, seleccionar
 los enfrentamientos de un torneo, el cual es de formato todos contrar todos y
 cada equipo deberá tener un partido ida (local) y vuelta (visitante).
