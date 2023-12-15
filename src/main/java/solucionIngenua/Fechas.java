@@ -5,7 +5,6 @@
  */
 
 package solucionIngenua;
-import java.util.Arrays;
 
 /**
  * Clase que se encarga de generar las fechas del torneo
@@ -30,6 +29,9 @@ public class Fechas {
         this.columna = columna;
         this.min = min;
         this.max = max;
+
+        Vuelta();
+        MiniRecor();
     }
 
 
@@ -99,9 +101,8 @@ public class Fechas {
 
     /**
      * Método que genera fechas para la vuelta del torneo (No tiene en cuenta las distancias)
-     * @return matriz con las fechas totales del torneo
      */
-    public int[][] Vuelta(){
+    public void Vuelta(){
         //Agrego los valores de la ida
         OrgFechas();
         //Se recorre la otra mitad de la matriz
@@ -112,7 +113,6 @@ public class Fechas {
             }
         }
         //Retorna la matriz con los valores de la vuelta
-        return enfrent;
     }
 
 
@@ -122,7 +122,6 @@ public class Fechas {
     public void MiniRecor(){
         Vuelta();
         permutaciones(enfrent, 0);
-        System.out.println(Arrays.deepToString(torneo));
     }
 
     /**
@@ -132,7 +131,6 @@ public class Fechas {
      */
     public void permutaciones(int[][] fechasEquipo, int nFecha){
         if (nFecha == fechasEquipo.length - 1) {
-
             int actual = SumaRecorrido(fechasEquipo);
             if ((totalR > actual || (totalR == 0)) && (minYMax(fechasEquipo))){
                 torneo = fechasEquipo.clone();
@@ -214,24 +212,25 @@ public class Fechas {
      * @return true si los equipos cumplen con min y max, false si no
      */
     public boolean minYMax(int[][] enfrent){
-        int contP, contN;
+        int contPos, contNeg;
         boolean permitido = true;
         for (int nTeams = 0; nTeams < this.columna; nTeams++){
-            contP=0;
-            contN=0;
+            contPos=0;
+            contNeg=0;
+
             for (int[] ints : enfrent) {
 
                 if (ints[nTeams] < 0) {
-                    contP = 0;
-                    contN++;
-                    if (contN > this.max || contN < this.min) {
+                    contPos = 0;
+                    contNeg++;
+                    if (contNeg > this.max || contNeg < this.min) {
                         permitido = false;
                         break;
                     }
                 } else {
-                    contN = 0;
-                    contP++;
-                    if (contP > max || contP < min) {
+                    contNeg = 0;
+                    contPos++;
+                    if (contPos > max || contPos < min) {
                         permitido = false;
                         break;
                     }
@@ -241,13 +240,26 @@ public class Fechas {
         return permitido;
     }
 
+
     /**
-     * Método main para probar la clase
-     * @param args argumentos de la clase
+     * Método que retorna la matriz con las fechas del torneo
+     * @return matriz con las fechas del torneo
      */
+    @Override
+    public String toString() {
+        for (int[] ints : torneo) {
+            for (int anInt : ints) {
+                System.out.print(anInt + " ");
+            }
+            System.out.print("\n");
+        }
+        return "";
+    }
+
+
     public static void main(String[] args) {
         int prueba = 4;
         Fechas fechas = new Fechas(2*(prueba-1),prueba, 3,1);
-        fechas.MiniRecor();
+        System.out.println(fechas.toString());
     }
 }

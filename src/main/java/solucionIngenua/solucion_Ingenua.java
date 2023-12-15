@@ -35,7 +35,6 @@ public class solucion_Ingenua {
     public void prueba (){
         int fechaTotal = getNumeroEquipos() * (getNumeroEquipos() - 1) / 2;
         Fechas fechas = new Fechas(fechaTotal,getNumeroEquipos(), getTamanoMaximo(), getTamanoMinimo());
-        System.out.println(Arrays.deepToString(fechas.Vuelta()));
     }
 
 
