@@ -1,18 +1,41 @@
+/**
+ * Creación de las fechas para el torneo por medio de solución ingenua
+ * @version 1.0, 15/12/2023
+ * @autor Santiago A. Carrillo Torres, Edwar Y. Forero Blanco, Juan E. Calderon
+ */
+
 package solucionIngenua;
 import java.util.Arrays;
 
+/**
+ * Clase que se encarga de generar las fechas del torneo
+ */
 public class Fechas {
-
-    private int contP, contN;
+    private int[][] torneo;
     private int totalR=0;
     private final int[][] enfrent;
     private final int columna;
+    private final int min, max;
 
-    public Fechas(int fila, int columna){
+
+    /**
+     * Constructor de la clase Fechas
+     * @param fila número de fechas de la matriz
+     * @param columna número de equipos de la matriz
+     * @param max número máximo de partidos seguidos de un equipo
+     * @param min número mínimo de partidos seguidos de un equipo
+     */
+    public Fechas(int fila, int columna, int max, int min){
         this.enfrent = new int[fila][columna];
         this.columna = columna;
+        this.min = min;
+        this.max = max;
     }
 
+
+    /**
+     * Método que genera fechas para la ida del torneo (No tiene en cuenta las distancias)
+     */
     public void OrgFechas(){
         if (this.columna % 2 != 0) {
             System.out.println("El número de equipos debe ser par");
@@ -21,7 +44,9 @@ public class Fechas {
             int ultPos1 = -1;
             for (int nFecha = 0; nFecha < this.enfrent.length/2; nFecha++) {
                 for (int nTeam = 0; nTeam < this.enfrent[nFecha].length; nTeam++) {
-                    if (enfrent[nFecha][nTeam] != 0){}
+                    if (enfrent[nFecha][nTeam] != 0){
+                        continue;
+                    }
                     else{
                         int equipo = 1;
                         while (equipo <= columna){
@@ -69,9 +94,13 @@ public class Fechas {
                 }
             }
         }
-        //Retorna la matriz con los valores de la ida
     }
 
+
+    /**
+     * Método que genera fechas para la vuelta del torneo (No tiene en cuenta las distancias)
+     * @return matriz con las fechas totales del torneo
+     */
     public int[][] Vuelta(){
         //Agrego los valores de la ida
         OrgFechas();
@@ -87,55 +116,55 @@ public class Fechas {
     }
 
 
-    public void PermutaFecha(int[] fechaCambio){
-        //Se recorre la matriz
-        for (int nFechas = 0; nFechas < enfrent.length; nFechas++){
-            for (int nEquipos = 0; nEquipos < this.columna; nEquipos++) {
-                //Se permuta el valor de la matriz
-                if (enfrent[nFechas][nEquipos] < 0){
-                    enfrent[nFechas][nEquipos] = enfrent[nFechas][nEquipos]*-1;
-                }
-                else{
-                    enfrent[nFechas][nEquipos] = enfrent[nFechas][nEquipos]*-1;
-                }
-            }
-        }
-    }
-
-    public int[][] AnalizaRecorridos(int max, int min){
+    /**
+     * Método que se encarga de llamar a la función para permutaciones
+     */
+    public void MiniRecor(){
         Vuelta();
-        for (int nTeams = 0; nTeams < this.columna; nTeams++){
-            contP=0;
-            contN=0;
-            for (int nFechas = 0; nFechas < enfrent.length; nFechas++) {
-                if (enfrent[nFechas][nTeams] < 0){
-                    contP=0;
-                    contN++;
-                    int valor = (enfrent[nFechas][nTeams]*-1)-1;
-                    int recorrido = solucion_Ingenua.Recorr()[nTeams][valor];
-                    if (contN > max || contN < min){
-                        PermutaFecha(enfrent[nFechas]);
-                        System.out.println(Arrays.toString(enfrent[nFechas]));
-                    }
-                }
-                else{
-                    contN=0;
-                    contP++;
-                    if (contP > max || contP < min){
-                        PermutaFecha(enfrent[nFechas]);
-                        System.out.println(Arrays.toString(enfrent[nFechas]));
-                    }
-                }
-            }
-        }
-        return enfrent;
+        permutaciones(enfrent, 0);
+        System.out.println(Arrays.deepToString(torneo));
     }
 
-    public int SumaRecorrido(int inicio, int equipo) {
+    /**
+     * Método recursivo que permuta todas las fechas del torneo
+     * @param fechasEquipo matriz con las fechas del torneo
+     * @param nFecha número de fechas del torneo
+     */
+    public void permutaciones(int[][] fechasEquipo, int nFecha){
+        if (nFecha == fechasEquipo.length - 1) {
+
+            int actual = SumaRecorrido(fechasEquipo);
+            if ((totalR > actual || (totalR == 0)) && (minYMax(fechasEquipo))){
+                torneo = fechasEquipo.clone();
+                totalR = actual;
+            }
+        }
+        else {
+            for (int i = nFecha; i < fechasEquipo.length; i++) {
+
+                int[] temp = fechasEquipo[nFecha];
+                fechasEquipo[nFecha] = fechasEquipo[i];
+                fechasEquipo[i] = temp;
+
+                permutaciones(fechasEquipo, nFecha + 1);
+
+                temp = fechasEquipo[nFecha];
+                fechasEquipo[nFecha] = fechasEquipo[i];
+                fechasEquipo[i] = temp;
+            }
+        }
+    }
+
+    /**
+     * Método que suma el recorrido total de los equipos en el torneo
+     * @param enfrent matriz con las fechas del torneo
+     * @return suma total del recorrido de un torneo
+     */
+    public int SumaRecorrido(int[][] enfrent){
+        int totalR = 0;
         int posicionEqui;
         int posicionEqui2;
-        Vuelta();
-        for (int nTeam = inicio; nTeam < equipo+1; nTeam++) {
+        for (int nTeam = 0; nTeam < this.columna; nTeam++) {
             for (int nFechas = 0; nFechas < enfrent.length - 1; nFechas++) {
 
                 //Inicie el torneo de visita
@@ -167,23 +196,58 @@ public class Fechas {
                     totalR += solucion_Ingenua.Recorr()[posicionEqui][posicionEqui2];
                 }
 
-
-                //Ultimo partido visitante y termina de local
+                //Ultimo partido visitante y se devuelve a casa
                 if (enfrent[nFechas][nTeam] < 0 && nFechas+1 == enfrent.length-1) {
-                    posicionEqui = (enfrent[nFechas+1][nTeam] * -1) - 1;
+                    posicionEqui = (enfrent[nFechas][nTeam] * -1) - 1;
                     posicionEqui2 = nTeam;
                     totalR += solucion_Ingenua.Recorr()[posicionEqui][posicionEqui2];
                 }
             }
         }
-            return totalR;
-        }
+        return totalR;
+    }
 
+
+    /**
+     * Método que valida que los equipos no tengan más partidos seguidos de los permitidos
+     * @param enfrent matriz con las fechas del torneo
+     * @return true si los equipos cumplen con min y max, false si no
+     */
+    public boolean minYMax(int[][] enfrent){
+        int contP, contN;
+        boolean permitido = true;
+        for (int nTeams = 0; nTeams < this.columna; nTeams++){
+            contP=0;
+            contN=0;
+            for (int[] ints : enfrent) {
+
+                if (ints[nTeams] < 0) {
+                    contP = 0;
+                    contN++;
+                    if (contN > this.max || contN < this.min) {
+                        permitido = false;
+                        break;
+                    }
+                } else {
+                    contN = 0;
+                    contP++;
+                    if (contP > max || contP < min) {
+                        permitido = false;
+                        break;
+                    }
+                }
+            }
+        }
+        return permitido;
+    }
+
+    /**
+     * Método main para probar la clase
+     * @param args argumentos de la clase
+     */
     public static void main(String[] args) {
         int prueba = 4;
-        Fechas fechas = new Fechas(2*(prueba-1),prueba);
-        System.out.println(fechas.SumaRecorrido(0,prueba-1));
-        System.out.println(Arrays.deepToString(fechas.AnalizaRecorridos(3,1)));
-        System.out.println("Recorrido total: "+fechas.totalR+" km");
+        Fechas fechas = new Fechas(2*(prueba-1),prueba, 3,1);
+        fechas.MiniRecor();
     }
 }
