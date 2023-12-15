@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="36a0530e-df42-4c26-9e19-53d0b56fe18e" name="Changes" comment="prueba3">
+      <change beforePath="$PROJECT_DIR$/src/main/java/solucionIngenua/Fechas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/solucionIngenua/Fechas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/solucionIngenua/solucion_Ingenua.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/solucionIngenua/solucion_Ingenua.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2YYQ95hiGh7BbQ5GzgTLfnhhe2o" />
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="openDirectoriesWithSingleClick" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/user/Desktop/CaldDep&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="gradle classes" />
+      <command value="gradle javadoc" />
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.Fechas">
+    <configuration name="Fechas" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="solucionIngenua.Fechas" />
+      <module name="CaldDep.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="solucionIngenua.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CaldDep [classes]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="classes" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="CaldDep [javadoc]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="javadoc" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.CaldDep [javadoc]" />
+        <item itemvalue="Gradle.CaldDep [classes]" />
+        <item itemvalue="Application.Fechas" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="36a0530e-df42-4c26-9e19-53d0b56fe18e" name="Changes" comment="" />
+      <created>1700699878925</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1700699878925</updated>
+      <workItem from="1700699879973" duration="28000" />
+      <workItem from="1700701257132" duration="2625000" />
+      <workItem from="1700704432320" duration="320000" />
+      <workItem from="1700704860417" duration="293000" />
+      <workItem from="1700705168614" duration="390000" />
+      <workItem from="1700757562539" duration="1943000" />
+      <workItem from="1700762610738" duration="235000" />
+      <workItem from="1700782230865" duration="8380000" />
+      <workItem from="1700845521365" duration="3445000" />
+      <workItem from="1700853843815" duration="924000" />
+      <workItem from="1700855387198" duration="11747000" />
+      <workItem from="1700874463348" duration="667000" />
+      <workItem from="1700932535426" duration="2255000" />
+      <workItem from="1700945132980" duration="6824000" />
+      <workItem from="1700958369948" duration="4120000" />
+      <workItem from="1700963492011" duration="1040000" />
+      <workItem from="1701013734086" duration="1610000" />
+      <workItem from="1701021229479" duration="616000" />
+      <workItem from="1701035504006" duration="437000" />
+      <workItem from="1701106622642" duration="613000" />
+      <workItem from="1701126433229" duration="671000" />
+      <workItem from="1701274357935" duration="110000" />
+      <workItem from="1701373631910" duration="628000" />
+      <workItem from="1702140430726" duration="1089000" />
+      <workItem from="1702310126061" duration="5326000" />
+      <workItem from="1702319904608" duration="1047000" />
+      <workItem from="1702326828155" duration="10454000" />
+      <workItem from="1702344885181" duration="3278000" />
+      <workItem from="1702396933595" duration="78000" />
+      <workItem from="1702397323612" duration="2263000" />
+      <workItem from="1702406286716" duration="1851000" />
+      <workItem from="1702408257654" duration="16178000" />
+      <workItem from="1702432852002" duration="3697000" />
+      <workItem from="1702438758011" duration="1454000" />
+      <workItem from="1702482794189" duration="7501000" />
+      <workItem from="1702498012657" duration="3181000" />
+      <workItem from="1702503649434" duration="17086000" />
+      <workItem from="1702570392155" duration="4393000" />
+      <workItem from="1702584688822" duration="1188000" />
+      <workItem from="1702605001691" duration="9036000" />
+      <workItem from="1702647810788" duration="185000" />
+      <workItem from="1702648444796" duration="271000" />
+      <workItem from="1702657499961" duration="4795000" />
+      <workItem from="1702671813351" duration="1691000" />
+      <workItem from="1702673878940" duration="5372000" />
+    </task>
+    <task id="LOCAL-00001" summary="cambioPrueba">
+      <option name="closed" value="true" />
+      <created>1700702430083</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1700702430083</updated>
+    </task>
+    <task id="LOCAL-00002" summary="cambioPrueba">
+      <option name="closed" value="true" />
+      <created>1700704073513</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1700704073513</updated>
+    </task>
+    <task id="LOCAL-00003" summary="prueba3">
+      <option name="closed" value="true" />
+      <created>1700705236772</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1700705236772</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="&quot;cambioPrueba&quot;" />
+    <MESSAGE value="prueba2" />
+    <MESSAGE value="cambioPrueba" />
+    <MESSAGE value="prueba3" />
+    <option name="LAST_COMMIT_MESSAGE" value="prueba3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
