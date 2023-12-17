@@ -175,7 +175,7 @@ public class Fechas {
 
                 //Tenga partidos de visitante seguidos
                 if (enfrent[nFechas][nTeam] < 0 && enfrent[nFechas + 1][nTeam] < 0) {
-                     posicionEqui = (enfrent[nFechas][nTeam] * -1) - 1;
+                    posicionEqui = (enfrent[nFechas][nTeam] * -1) - 1;
                     posicionEqui2 = (enfrent[nFechas + 1][nTeam] * -1) - 1;
                     totalR += solucion_Ingenua.Recorr()[posicionEqui][posicionEqui2];
                 }
@@ -258,8 +258,8 @@ public class Fechas {
 
 
     public static void main(String[] args) {
-        int prueba = 8;
-        Fechas fechas = new Fechas(2*(prueba-1),prueba, 7,1);
+        int prueba = 6;
+        Fechas fechas = new Fechas(2*(prueba-1),prueba, 5,1);
         System.out.println(fechas.toString());
     }
 }

@@ -1,4 +1,5 @@
 package cargaDeDatos;
+import solucionIngenua.Fechas;
 import solucionIngenua.solucion_Ingenua;
 import javax.swing.*;
 import java.io.BufferedReader;
@@ -13,7 +14,6 @@ import java.io.FileReader;
  */
 
 public class archivoDeTexto {
-
     /**
      * Este método permite cargar los datos de un archivo de texto
      * @param args argumentos de la línea de comandos
@@ -36,11 +36,7 @@ public class archivoDeTexto {
      */
     private static void leerArchivo(File file) {
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-            /**
-             * Leer la primera línea (numEquipos)
-             * @param numEquipos número de equipos
-             *
-             */
+            //Leer la primera línea (numEquipos)
             int numEquipos = Integer.parseInt(br.readLine());
 
             // Leer la segunda línea (min)
@@ -58,11 +54,10 @@ public class archivoDeTexto {
                 }
             }
 
-            // Crear una instancia de solucion_Ingenua y pasar la información
-            //solucion_Ingenua solucion = new solucion_Ingenua(numEquipos, min, max, matrizDistancias);
+            //Fechas fechas = new Fechas(2*(numEquipos-1),numEquipos, max, min);
+            //System.out.println(fechas.toString());
 
-            // Imprimir la información (puedes personalizar esto según tus necesidades)
-            //solucion.imprimirInformacion();
+
 
         } catch (Exception e) {
             e.printStackTrace();
