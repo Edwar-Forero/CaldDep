@@ -1,5 +1,4 @@
 package cargaDeDatos;
-
 import javax.swing.JFileChooser;
 import java.io.BufferedReader;
 import java.io.File;
@@ -13,7 +12,6 @@ import java.io.FileReader;
  */
 
 public class archivoDeTexto {
-
     /**
      * Este método permite cargar los datos de un archivo de texto
      * @param args argumentos de la línea de comandos
@@ -52,13 +50,8 @@ public class archivoDeTexto {
                     matrizDistancias[i][j] = Integer.parseInt(distancias[j]);
                 }
             }
-
             // Crear una instancia de solucion_Ingenua y pasar la información
             new CargaDatos(numEquipos, min, max, matrizDistancias);
-
-            // Imprimir la información (puedes personalizar esto según tus necesidades)
-            //solucion.imprimirInformacion();
-
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -150,7 +150,7 @@ public class Fechas {
 
                 //Tenga partidos de visitante seguidos
                 if (enfrent[nFechas][nTeam] < 0 && enfrent[nFechas + 1][nTeam] < 0) {
-                     posicionEqui = (enfrent[nFechas][nTeam] * -1) - 1;
+                    posicionEqui = (enfrent[nFechas][nTeam] * -1) - 1;
                     posicionEqui2 = (enfrent[nFechas + 1][nTeam] * -1) - 1;
                     totalR += solucion_Ingenua.Recorr()[posicionEqui][posicionEqui2];
                 }
