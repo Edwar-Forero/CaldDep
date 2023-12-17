@@ -6,6 +6,9 @@
 
 package solucionIngenua;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Clase que se encarga de generar las fechas del torneo
  */
@@ -15,12 +18,12 @@ public class Fechas {
     private final int[][] enfrent;
     private final int columna;
     private final int min, max;
-
+    List<Integer> teams;
 
     /**
      * Constructor de la clase Fechas
      * @param fila número de fechas de la matriz
-     * @param columna número de equipos de la matriz
+     * @param columna número de teams de la matriz
      * @param max número máximo de partidos seguidos de un equipo
      * @param min número mínimo de partidos seguidos de un equipo
      */
@@ -30,70 +33,43 @@ public class Fechas {
         this.min = min;
         this.max = max;
 
-        Vuelta();
         MiniRecor();
     }
 
 
     /**
+     * Método que guarda los equipos
+     */
+    public void guardarEquipos() {
+        teams = new ArrayList<>();
+        for (int i = 0; i < this.columna; i++) {
+            teams.add(i);
+        }
+    }
+
+    /**
      * Método que genera fechas para la ida del torneo (No tiene en cuenta las distancias)
      */
     public void OrgFechas(){
+        guardarEquipos();
+
+        //Si el equipo es impar no se puede generar el torneo
         if (this.columna % 2 != 0) {
-            System.out.println("El número de equipos debe ser par");
             System.exit(0);
-        } else{
-            int ultPos1 = -1;
-            for (int nFecha = 0; nFecha < this.enfrent.length/2; nFecha++) {
-                for (int nTeam = 0; nTeam < this.enfrent[nFecha].length; nTeam++) {
-                    if (enfrent[nFecha][nTeam] != 0){
-                        continue;
-                    }
-                    else{
-                        int equipo = 1;
-                        while (equipo <= columna){
-                            //Elegir los contrincantes del cada equipo
-                            if(equipo-1 != nTeam && equipo > ultPos1){
-
-                                //La posición del equipo es mayor a la del último equipo que jugó para evitar que se repitan los equipos
-                                //Se asigna el equipo a la posición
-                                enfrent[nFecha][nTeam] = equipo;
-
-                                //Guarda la posición del contrincante del equipo 1
-                                ultPos1 = enfrent[nFecha][0];
-
-                                //Configuración para la última Nfecha que se tiene que jugar en la ida
-                                if(equipo >= columna){
-
-                                    //Se asigna el valor al equipo contrario en la última Nfecha
-                                    enfrent[nFecha][equipo-1] = (nTeam+1)*-1;
-
-                                    //Se recorre de nuevo las posiciones para los equipos que no tienen contrincante en la última Nfecha
-                                    for (int i = 0; i < ((this.enfrent[nFecha].length)-1);i++){
-
-                                        //El valor del equipo debe ser mayor que 2 y menor que el final ya que son los valores faltantes
-                                        if (enfrent[nFecha][i] == 0 && equipo>=2 && equipo<columna){
-                                            enfrent[nFecha][i] = equipo;
-                                            enfrent[nFecha][equipo-1] = (i+1)*-1;
-                                        }
-                                        equipo--;
-                                    }
-                                    break;
-                                }
-                                else{
-                                    //Si no es la última Nfecha se asigna el contrincante del equipo normalmente
-                                    enfrent[nFecha][nTeam] = equipo;
-                                    ultPos1 = enfrent[nFecha][0];
-                                    if (enfrent[nFecha][equipo-1] == 0){
-                                        enfrent[nFecha][equipo-1] = (nTeam+1)*-1;
-                                        break;
-                                    }
-                                }
-                            }
-                            equipo++;
-                        }
-                    }
+        }
+        else{
+            for (int i = 0; i < enfrent.length/2; i++) {
+                for (int j = 0; j < columna / 2; j++) {
+                    // Los teams se emparejan y juegan entre sí
+                    int equipo1 = teams.get(j);
+                    int equipo2 = teams.get(columna - j - 1);
+                    enfrent[i][equipo1] = equipo2 + 1; // El equipo1 juega en casa contra equipo2
+                    enfrent[i][equipo2] = -(equipo1 + 1); // El equipo2 juega fuera contra equipo1
                 }
+
+                // Rotar los teams para la siguiente jornada
+                int primerEquipo = teams.remove(1);
+                teams.add(primerEquipo);
             }
         }
     }
@@ -112,7 +88,6 @@ public class Fechas {
                 enfrent[nFechas][nEquipos] = enfrent[nFechas-(enfrent.length/2)][nEquipos]*-1;
             }
         }
-        //Retorna la matriz con los valores de la vuelta
     }
 
 
@@ -154,7 +129,7 @@ public class Fechas {
     }
 
     /**
-     * Método que suma el recorrido total de los equipos en el torneo
+     * Método que suma el recorrido total de los teams en el torneo
      * @param enfrent matriz con las fechas del torneo
      * @return suma total del recorrido de un torneo
      */
@@ -165,11 +140,11 @@ public class Fechas {
         for (int nTeam = 0; nTeam < this.columna; nTeam++) {
             for (int nFechas = 0; nFechas < enfrent.length - 1; nFechas++) {
 
+
                 //Inicie el torneo de visita
                 if (nFechas == 0 && enfrent[nFechas][nTeam] < 0){
                     posicionEqui = nTeam;
                     posicionEqui2 = (enfrent[nFechas][nTeam] * -1) - 1;
-                    //System.out.println("Team: " + (nTeam + 1) + ", recorrido: " + solucion_Ingenua.Recorr()[posicionEqui][posicionEqui2]);
                     totalR += solucion_Ingenua.Recorr()[posicionEqui][posicionEqui2];
                 }
 
@@ -207,9 +182,9 @@ public class Fechas {
 
 
     /**
-     * Método que valida que los equipos no tengan más partidos seguidos de los permitidos
+     * Método que valida que los teams no tengan más partidos seguidos de los permitidos
      * @param enfrent matriz con las fechas del torneo
-     * @return true si los equipos cumplen con min y max, false si no
+     * @return true si los teams cumplen con min y max, false si no
      */
     public boolean minYMax(int[][] enfrent){
         int contPos, contNeg;
@@ -240,7 +215,6 @@ public class Fechas {
         return permitido;
     }
 
-
     /**
      * Método que retorna la matriz con las fechas del torneo
      * @return matriz con las fechas del torneo
@@ -255,7 +229,6 @@ public class Fechas {
         }
         return "";
     }
-
 
     public static void main(String[] args) {
         int prueba = 6;
