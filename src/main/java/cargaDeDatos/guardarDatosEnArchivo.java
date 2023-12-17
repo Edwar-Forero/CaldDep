@@ -7,8 +7,22 @@ import java.io.IOException;
 
 public class guardarDatosEnArchivo {
 
-    public static void main(String[] args) {
+    private int numeroEquipos;
+    private int tamanoMinimo;
+    private int tamanoMaximo;
+    private String torneo;
+
+    public guardarDatosEnArchivo(int numeroEquipos, int tamanoMinimo, int tamanoMaximo, String torneo) {
+        this.numeroEquipos = numeroEquipos;
+        this.tamanoMinimo = tamanoMinimo;
+        this.tamanoMaximo = tamanoMaximo;
+        this.torneo = torneo;
+
+    }
+
+    public void creacionFile(){
         JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Guardar solucion");
         int result = fileChooser.showSaveDialog(null);
 
         if (result == JFileChooser.APPROVE_OPTION) {
@@ -17,26 +31,14 @@ public class guardarDatosEnArchivo {
         }
     }
 
-    private static void guardarArchivo(File file) {
+    private void guardarArchivo(File file) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
-            // Solicitar información al usuario (tamaño, min, max, matriz)
-            int numEquipos = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el tamaño del equipo:"));
-            int min = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el valor mínimo:"));
-            int max = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el valor máximo:"));
 
             // Escribir en el archivo
-            bw.write(numEquipos + "\n");
-            bw.write(min + "\n");
-            bw.write(max + "\n");
-
-            // Generar y escribir la matriz de distancias
-            for (int i = 0; i < numEquipos; i++) {
-                for (int j = 0; j < numEquipos; j++) {
-                    int distancia = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la distancia entre el equipo " + (i + 1) + " y el equipo " + (j + 1) + ":"));
-                    bw.write(distancia + " ");
-                }
-                bw.write("\n");
-            }
+            bw.write(numeroEquipos + "\n");
+            bw.write(tamanoMinimo + "\n");
+            bw.write(tamanoMaximo + "\n");
+            bw.write(torneo + "\n");
 
             System.out.println("Datos guardados exitosamente en: " + file.getAbsolutePath());
 

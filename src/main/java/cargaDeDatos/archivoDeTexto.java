@@ -3,6 +3,7 @@ import javax.swing.JFileChooser;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.Arrays;
 
 
 /**
@@ -11,14 +12,16 @@ import java.io.FileReader;
  * @version 1.0
  */
 
-public class archivoDeTexto {
+public class archivoDeTexto{
     /**
      * Este método permite cargar los datos de un archivo de texto
      * @param args argumentos de la línea de comandos
      *
      */
-    public static void main(String[] args) {
+    public static void main(String[] args){
         JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Obtener informacion");
+
         int result = fileChooser.showOpenDialog(null);
 
         if (result == JFileChooser.APPROVE_OPTION) {
@@ -50,8 +53,15 @@ public class archivoDeTexto {
                     matrizDistancias[i][j] = Integer.parseInt(distancias[j]);
                 }
             }
-            // Crear una instancia de solucion_Ingenua y pasar la información
-            new CargaDatos(numEquipos, min, max, matrizDistancias);
+            // Crear una instancia y pasar la información
+            CargaDatos cargaDatos = new CargaDatos();
+            cargaDatos.setNumeroEquipos(numEquipos);
+            cargaDatos.setTamanoMinimo(min);
+            cargaDatos.setTamanoMaximo(max);
+            cargaDatos.setMatrizDistancias(matrizDistancias);
+
+            cargaDatos.soluciones();
+
         } catch (Exception e) {
             e.printStackTrace();
         }

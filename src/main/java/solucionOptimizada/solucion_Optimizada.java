@@ -1,8 +1,6 @@
  package solucionOptimizada;
-import solucionIngenua.solucion_Ingenua;
 
  import java.util.Arrays;
- import java.util.Random;
 
  public class solucion_Optimizada {
      private int max, min;
@@ -14,7 +12,6 @@ import solucionIngenua.solucion_Ingenua;
          this.max = max;
          this.min = min;
          matrizFechas(prueba);
-         //matrizFechas(equipos, 2*(equipos-1));
          System.out.println(Arrays.deepToString(prueba));
      }
 
@@ -49,12 +46,12 @@ import solucionIngenua.solucion_Ingenua;
          }
      }
 
-     public void eligeRecorrido(int equipo){
+     /*public void eligeRecorrido(int equipo){
          int [] mejorRecorrido = new int[prueba.length];
          for( int i = 0; i < solucion_Ingenua.Recorr().length;i++){
 
          }
-     }
+     }*/
 
     public static void main(String[] args) {
         int equipos = 4;
