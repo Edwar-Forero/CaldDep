@@ -26,4 +26,4 @@ le va a pedir que seleccione la ruta donde desea guardar el archivo de texto con
 ***
 
 # Informe:
-Se encuentra en el repositorio github en la ruta: ()
+Se encuentra en el repositorio github en la ruta: [Calendario.pdf](Calendario.pdf)
