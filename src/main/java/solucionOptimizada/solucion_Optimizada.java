@@ -1,63 +1,48 @@
  package solucionOptimizada;
 
  import java.util.Arrays;
+ import java.util.HashMap;
+ import java.util.TreeMap;
 
  public class solucion_Optimizada {
-     private int max, min;
 
-     int[][] prueba = new int[4][4];
+     private final int max, min, fila, columna;
+     private HashMap<Integer, Integer> fechasTeam;
+
+     int[][] recorridos;
 
 
-     public solucion_Optimizada(int max, int min, int equipos) {
+     public solucion_Optimizada(int fila, int columna, int max, int min, int [][] matrizDistancias) {
+         this.fila = fila;
+         this.columna = columna;
          this.max = max;
          this.min = min;
-         matrizFechas(prueba);
-         System.out.println(Arrays.deepToString(prueba));
-     }
+         recorridos = matrizDistancias;
 
+         fechasTeam = new HashMap<>(columna*(columna-1));
+     }
 
      public void matrizFechas(int[][] prueba) {
          if (prueba.length <= 1) {
-             //System.out.println(Arrays.deepToString(prueba));
+
          } else {
-
-             int mitad = prueba.length / 2;
-
-
-             int[][] prueba1 = Arrays.copyOfRange(prueba, 0, mitad);
-             int[][] prueba2 = Arrays.copyOfRange(prueba, mitad, prueba.length);
-
-             for (int i = 0; i < prueba1.length; i++) {
-                 for (int j = 0; j < prueba1[i].length; j++) {
-                     if (prueba1[i][j] == 0) {
-                         //prueba1[i][j] = Random.ne;
-                     } else
-                         prueba1[i][j] = prueba1[i][j] + 1;
-                 }
-             }
-             for (int i = 0; i < prueba2.length; i++) {
-                 for (int j = 0; j < prueba1[i].length; j++) {
-                     prueba1[i][j] = prueba1[i][j] + 1;
-                 }
-             }
-             matrizFechas(prueba1);
-             matrizFechas(prueba2);
-
          }
      }
 
-     /*public void eligeRecorrido(int equipo){
-         int [] mejorRecorrido = new int[prueba.length];
-         for( int i = 0; i < solucion_Ingenua.Recorr().length;i++){
-
-         }
-     }*/
-
     public static void main(String[] args) {
-        int equipos = 4;
-        int[][] fechas = new int[2*(equipos-1)][equipos];
+        int prueba = 4;
+        int[][] recorrido = {
+                {0, 745, 665, 929},
+                {745, 0, 80, 337},
+                {665, 80, 0, 380},
+                {929, 337, 380, 0}
+        };
+        solucion_Optimizada optima = new solucion_Optimizada(2*(prueba-1),prueba,3,1,recorrido);
+        //System.out.println(optima.toString());
 
-        solucion_Optimizada optima = new solucion_Optimizada(3,1,equipos);
+
+
         //optima.matrizFechas(equipos, 2*(equipos-1));
+
     }
 }
