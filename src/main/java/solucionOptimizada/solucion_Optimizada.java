@@ -1,13 +1,24 @@
- package solucionOptimizada;
+/**
+ * @autor Santiago Anibal Carrillo Torres, Edwar Yamir Forero Blanco, Juan Eduardo Calderon Jaramillo
+ */
+package solucionOptimizada;
 
- import java.util.Arrays;
+import java.util.Arrays;
 
- public class solucion_Optimizada {
-     private int max, min;
+/**
+ * Clase que se encarga de generar las fechas del torneo
+ */
+public class solucion_Optimizada {
+    private int max, min;
 
-     int[][] prueba = new int[4][4];
+    int[][] prueba = new int[4][4];
 
-
+    /**
+     * Constructor de la clase que recibe los datos para generar las fechas del torneo
+     * @param max
+     * @param min
+     * @param equipos
+     */
      public solucion_Optimizada(int max, int min, int equipos) {
          this.max = max;
          this.min = min;
@@ -15,7 +26,10 @@
          System.out.println(Arrays.deepToString(prueba));
      }
 
-
+    /**
+     * Método que genera las fechas del torneo
+     * @param prueba
+     */
      public void matrizFechas(int[][] prueba) {
          if (prueba.length <= 1) {
              //System.out.println(Arrays.deepToString(prueba));
@@ -53,6 +67,10 @@
          }
      }*/
 
+    /**
+     * Método que genera los recorridos de los equipos
+     * @param args
+     */
     public static void main(String[] args) {
         int equipos = 4;
         int[][] fechas = new int[2*(equipos-1)][equipos];

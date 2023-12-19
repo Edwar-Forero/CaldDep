@@ -1,7 +1,7 @@
 /**
  * Creación de las fechas para el torneo por medio de solución ingenua
  * @version 1.0, 15/12/2023
- * @autor Santiago A. Carrillo Torres, Edwar Y. Forero Blanco, Juan E. Calderon
+ * @autor Santiago A. Carrillo Torres, Edwar Y. Forero Blanco, Juan E. Calderon Jaramillo
  */
 
 package solucionIngenua;
@@ -33,7 +33,7 @@ public class solucion_Ingenua {
     int[][] recorridos;
 
     /**
-     * Constructor de la clase Fechas
+     * Constructor de la clase que recibe los datos para generar las fechas del torneo
      * @param fila número de fechas de la matriz
      * @param columna número de teams de la matriz
      * @param max número máximo de partidos seguidos de un equipo
@@ -104,7 +104,7 @@ public class solucion_Ingenua {
     }
 
 
-    /**
+    /**w
      * Método que se encarga de llamar a la función para permutaciones
      */
     public void MiniRecor(){
