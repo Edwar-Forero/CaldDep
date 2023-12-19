@@ -258,8 +258,8 @@ public class Fechas {
 
 
     public static void main(String[] args) {
-        int prueba = 4;
-        Fechas fechas = new Fechas(2*(prueba-1),prueba, 3,1);
+        int prueba = 8;
+        Fechas fechas = new Fechas(2*(prueba-1),prueba, 7,1);
         System.out.println(fechas.toString());
     }
 }
