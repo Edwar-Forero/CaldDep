@@ -1,15 +1,10 @@
-/**
- * Esta clase permite cargar los datos de un archivo de texto
- * @author Santiago Anibal Carrillo Torres, Edwar Yamir Forero Blanco, Juan Eduardo Calderon Jaramillo
- * @version 1.0
- */
-
 package cargaDeDatos;
 
 import solucionIngenua.solucion_Ingenua;
 
 /**
  * Esta clase permite cargar los datos de un archivo de texto y pasarlos a la clase solucion_Ingenua
+ * @author Santiago Anibal Carrillo Torres, Edwar Yamir Forero Blanco, Juan Eduardo Calderon Jaramillo
  *
  */
 public class CargaDatos {
@@ -19,91 +14,87 @@ public class CargaDatos {
     private int[][] matrizDistancias;
     private String solucion_Ing;
 
-    // Constructor para inicializar la clase
-    /*public CargaDatos(int numeroEquipos, int tamanoMinimo, int tamanoMaximo, int[][] matrizDistancias) {
-        this.numeroEquipos = numeroEquipos;
-        this.tamanoMinimo = tamanoMinimo;
-        this.tamanoMaximo = tamanoMaximo;
-        this.matrizDistancias = matrizDistancias;
-    }*/
     /**
      * Método setter para modificar las variables desde fuera de la clase
-     * @return numeroEquipos
-     * @param numeroEquipos
+     * @param numeroEquipos es el número de equipos que se van a crear
+     *
      */
-
     public void setNumeroEquipos(int numeroEquipos) {
         this.numeroEquipos = numeroEquipos;
     }
+
     /**
      * Métodos getter para acceder a las variables desde fuera de la clase
-     * @return numeroEquipos
+     * @return retorna el número de equipos
      */
-
     public int getNumeroEquipos() {
         return numeroEquipos;
     }
 
     /**
      * Método setter para modificar las variables desde fuera de la clase
-     * @return tamanoMinimo
-     * @param tamanoMinimo
+     * @param tamanoMinimo es el mínimo de partidos seguidos que puede tener un equipo
      */
     public void setTamanoMinimo(int tamanoMinimo) {
         this.tamanoMinimo = tamanoMinimo;
     }
+
     /**
      * Métodos getter para acceder a las variables desde fuera de la clase
-     * @return tamanoMinimo
+     * @return tamanoMinimo retorna el mínimo de partidos seguidos que puede tener un equipo
      */
     public int getTamanoMinimo() {
         return tamanoMinimo;
     }
+
     /**
      * Método setter para modificar las variables desde fuera de la clase
-     * @return tamanoMaximo
-     * @param tamanoMaximo
+     * @param tamanoMaximo retorna el máximo de partidos seguidos que puede tener un equipo
      */
     public void setTamanoMaximo(int tamanoMaximo) {
         this.tamanoMaximo = tamanoMaximo;
     }
+
     /**
      * Métodos getter para acceder a las variables desde fuera de la clase
-     * @return tamanoMaximo
+     * @return retorna tamanoMaximo que es el máximo de partidos seguidos que puede tener un equipo
      */
     public int getTamanoMaximo() {
         return tamanoMaximo;
     }
+
     /**
      * Método setter para modificar las variables desde fuera de la clase
-     * @return matrizDistancias
-     * @param matrizDistancias
+     * @param matrizDistancias es la matriz de distancias entre los equipos
      */
     public void setMatrizDistancias(int[][] matrizDistancias) {
         this.matrizDistancias = matrizDistancias;
     }
+
     /**
      * Métodos getter para acceder a las variables desde fuera de la clase
-     * @return matrizDistancias
+     * @return matrizDistancias retorna la matriz de distancias entre los equipos
      */
     public int[][] getMatrizDistancias() {
         return matrizDistancias;
     }
+
     /**
      * Método setter para modificar las variables desde fuera de la clase
-     * @return solucion_Ing
-     * @param solucion_Ing
+     * @param solucion_Ing es la solución ingenua que se obtiene*
      */
     public void setSolIng(String solucion_Ing) {
         this.solucion_Ing = solucion_Ing;
     }
+
     /**
      * Métodos getter para acceder a las variables desde fuera de la clase
-     * @return solucion_Ing
+     * @return solucion_Ing retorna la solución ingenua que se obtiene
      */
     public String getSolIng() {
         return solucion_Ing;
     }
+
     /**
      * Método que permite crear una instancia de la clase solucion_Ingenua y pasarle los datos
      */

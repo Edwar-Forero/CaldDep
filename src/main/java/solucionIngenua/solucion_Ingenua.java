@@ -1,19 +1,10 @@
-/**
- * Creación de las fechas para el torneo por medio de solución ingenua
- * @version 1.0, 15/12/2023
- * @autor Santiago A. Carrillo Torres, Edwar Y. Forero Blanco, Juan E. Calderon Jaramillo
- */
-
 package solucionIngenua;
-
-import cargaDeDatos.CargaDatos;
-import cargaDeDatos.guardarDatosEnArchivo;
-
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Clase que se encarga de generar las fechas del torneo
+ * @author Santiago A. Carrillo Torres, Edwar Y. Forero Blanco, Juan E. Calderon Jaramillo
  */
 public class solucion_Ingenua {
 
@@ -52,6 +43,7 @@ public class solucion_Ingenua {
 
     /**
      * Método que guarda los equipos
+     *
      */
     public void guardarEquipos() {
         teams = new ArrayList<>();
@@ -261,6 +253,10 @@ public class solucion_Ingenua {
         return acumularFilas.toString();
     }
 
+    /**
+     * Método que retorna la matriz con las fechas del torneo
+     * @param args argumentos de la línea de comandos
+     */
     public static void main(String[] args) {
         int[][] recorrido = {
                 {0, 184, 222, 177, 216, 231},
