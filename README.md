@@ -17,6 +17,7 @@ llamado:(cargaDeDatos) y por ultimo debe ejecturar la clase llamada (archivoDeTe
 
 3. Al ejecutar la clase (archivoDeTexto.java) se va a abrir una ventana donde se le va a pedir que
 seleccione el archivo de texto que desea cargar de sus archivos.
+
 <.[!IMPORTANT].
 
 4. Al terminar de generar el calendario deportivo se va a habrir nuevamente una ventana donde se
