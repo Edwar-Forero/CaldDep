@@ -12,6 +12,8 @@ public class guardarDatosEnArchivo {
     private int tamanoMaximo;
     private String torneo;
 
+
+
     public guardarDatosEnArchivo(int numeroEquipos, int tamanoMinimo, int tamanoMaximo, String torneo) {
         this.numeroEquipos = numeroEquipos;
         this.tamanoMinimo = tamanoMinimo;

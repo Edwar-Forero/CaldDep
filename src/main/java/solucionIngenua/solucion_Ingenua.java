@@ -121,13 +121,27 @@ public class solucion_Ingenua {
         if (nFecha == fechasEquipo.length - 1) {
             int actual = SumaRecorrido(fechasEquipo);
             if ((totalR > actual || (totalR == 0)) && (minYMax(fechasEquipo))){
-                torneo = fechasEquipo.clone();
+                torneo = new int[fechasEquipo.length][];
+                for(int i = 0; i < fechasEquipo.length; i++){
+                    torneo[i] = fechasEquipo[i].clone();
+                }
                 totalR = actual;
             }
         }
         else {
-            for (int i = nFecha; i < fechasEquipo.length; i++) {
+            int mitad = fechasEquipo.length / 2;
+            for (int i = nFecha; i < mitad; i++) {
+                int[] temp = fechasEquipo[nFecha];
+                fechasEquipo[nFecha] = fechasEquipo[i];
+                fechasEquipo[i] = temp;
 
+                permutaciones(fechasEquipo, nFecha + 1);
+
+                temp = fechasEquipo[nFecha];
+                fechasEquipo[nFecha] = fechasEquipo[i];
+                fechasEquipo[i] = temp;
+            }
+            for (int i = mitad; i < fechasEquipo.length; i++) {
                 int[] temp = fechasEquipo[nFecha];
                 fechasEquipo[nFecha] = fechasEquipo[i];
                 fechasEquipo[i] = temp;
@@ -140,6 +154,7 @@ public class solucion_Ingenua {
             }
         }
     }
+
 
     /**
      * Método que suma el recorrido total de los teams en el torneo
@@ -246,22 +261,19 @@ public class solucion_Ingenua {
         return acumularFilas.toString();
     }
 
-    /*public static void main(String[] args) {
-        int prueba = 6;
+    public static void main(String[] args) {
         int[][] recorrido = {
-                {0, 184, 222, 177, 216, 231, 120,  60},
-                {184, 0,  45, 123, 128, 200,  52, 100},
-                {222, 45,   0, 129, 121, 203,  15, 300},
-                {177, 123, 129,   0,  46,  83, 250, 15},
-                {216, 128, 121,  46,   0,  83, 100, 7},
-                {231, 200, 203,  83,  83,   0,  20, 10},
-                {120, 52,  15, 250, 100,  20,  0,  441},
-                {60, 100, 300,  15,   7,  10, 441, 0},
+                {0, 184, 222, 177, 216, 231},
+                {184, 0, 45, 123, 128, 200},
+                {222,  45,   0, 129, 121, 203},
+                {177, 123, 129, 0,  46,  83},
+                {216, 128, 121,  46,   0,  75},
+                {231, 200, 203,83,75,0}
         };
-        solucion_Ingenua fechas = new solucion_Ingenua(2*(prueba-1),prueba, 5,1, recorrido);
+        solucion_Ingenua fechas = new solucion_Ingenua(2*(recorrido.length-1),recorrido.length, 5,1, recorrido);
         //System.out.println(fechas.toString());
 
         String s = fechas.toString();
         System.out.println(s);
-    }*/
+    }
 }
