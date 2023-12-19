@@ -4,7 +4,10 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-
+/**
+ * Clase que se encarga de guardar los datos de la solucion en un archivo de texto
+ * @autor Santiago Anibal Carrillo Torres, Edwar Yamir Forero Blanco, Juan Eduardo Calderon Jaramillo
+ */
 public class guardarDatosEnArchivo {
 
     private int numeroEquipos;
@@ -12,6 +15,13 @@ public class guardarDatosEnArchivo {
     private int tamanoMaximo;
     private String torneo;
 
+    /**
+     * Metodo constructor de la clase, el cual recibe los datos de la clase solucion_ingenua
+     * @param numeroEquipos
+     * @param tamanoMinimo
+     * @param tamanoMaximo
+     * @param torneo
+     */
     public guardarDatosEnArchivo(int numeroEquipos, int tamanoMinimo, int tamanoMaximo, String torneo) {
         this.numeroEquipos = numeroEquipos;
         this.tamanoMinimo = tamanoMinimo;
@@ -20,6 +30,9 @@ public class guardarDatosEnArchivo {
 
     }
 
+    /**
+     * Metodo que se encarga de crear el archivo de texto
+     */
     public void creacionFile(){
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Guardar solucion");
@@ -31,6 +44,10 @@ public class guardarDatosEnArchivo {
         }
     }
 
+    /**
+     * Metodo que se encarga de guardar los datos en el archivo de texto elegido
+     * @param file
+     */
     private void guardarArchivo(File file) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
 
