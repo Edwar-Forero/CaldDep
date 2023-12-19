@@ -10,7 +10,7 @@
 1. Primero debe clonar el repositorio de github (git clone git@github.com:Edwar-Forero/CaldDep.git).
 
 
-2. Para ejecutar el programa debe dirigirse a la siguente ruta: (CaldDep/src/main/java), luego de 
+2. Para ejecutar el programa debe dirigirse a la siguente ruta: [Ruta](CaldDep/src/main/java), luego de 
 estar posicionado en la carpeta (java) se va a encontrar 3 package, debe dirigirse al package 
 llamado:(cargaDeDatos) y por ultimo debe ejecturar la clase llamada (archivoDeTexto.java).
 
