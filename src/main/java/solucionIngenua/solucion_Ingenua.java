@@ -1,9 +1,3 @@
-/**
- * Creación de las fechas para el torneo por medio de solución ingenua
- * @version 1.0, 15/12/2023
- * @autor Santiago A. Carrillo Torres, Edwar Y. Forero Blanco, Juan E. Calderon
- */
-
 package solucionIngenua;
 
 import java.util.ArrayList;
@@ -11,6 +5,7 @@ import java.util.List;
 
 /**
  * Clase que se encarga de generar las fechas del torneo
+ * @author Santiago A. Carrillo Torres, Edwar Y. Forero Blanco, Juan E. Calderon Jaramillo
  */
 public class solucion_Ingenua {
 
@@ -30,7 +25,7 @@ public class solucion_Ingenua {
     int[][] recorridos;
 
     /**
-     * Constructor de la clase Fechas
+     * Constructor de la clase que recibe los datos para generar las fechas del torneo
      * @param fila número de fechas de la matriz
      * @param columna número de teams de la matriz
      * @param max número máximo de partidos seguidos de un equipo
@@ -49,6 +44,7 @@ public class solucion_Ingenua {
 
     /**
      * Método que guarda los equipos
+     *
      */
     public void guardarEquipos() {
         teams = new ArrayList<>();
@@ -101,7 +97,7 @@ public class solucion_Ingenua {
     }
 
 
-    /**
+    /**w
      * Método que se encarga de llamar a la función para permutaciones
      */
     public void MiniRecor(){
@@ -118,7 +114,10 @@ public class solucion_Ingenua {
         if (nFecha == fechasEquipo.length - 1) {
             int actual = SumaRecorrido(fechasEquipo);
             if ((totalR > actual || (totalR == 0)) && (minYMax(fechasEquipo))){
-                torneo = fechasEquipo.clone();
+                torneo = new int[fechasEquipo.length][];
+                for(int i = 0; i < fechasEquipo.length; i++){
+                    torneo[i] = fechasEquipo[i].clone();
+                }
                 totalR = actual;
             }
         }
@@ -137,6 +136,7 @@ public class solucion_Ingenua {
             }
         }
     }
+
 
     /**
      * Método que suma el recorrido total de los teams en el torneo

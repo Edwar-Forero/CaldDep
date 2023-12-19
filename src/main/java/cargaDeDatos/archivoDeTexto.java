@@ -8,8 +8,7 @@ import java.util.Arrays;
 
 /**
  * Esta clase permite cargar los datos de un archivo de texto
- * @author Santiago Anibal Carrillo Torres, Edwar Yamir Forero Blanco, Juan Eduardo Calderon
- * @version 1.0
+ *  * @author Santiago Anibal Carrillo Torres, Edwar Yamir Forero Blanco, Juan Eduardo Calderon
  */
 
 public class archivoDeTexto{
