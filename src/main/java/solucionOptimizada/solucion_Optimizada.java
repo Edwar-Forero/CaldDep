@@ -237,30 +237,4 @@ public class solucion_Optimizada {
         }
         return acumularFilas.toString();
     }
-
-    /**
-         * Método que genera los recorridos de los equipos
-         * @param args
-         */
-        public static void main (String[]args){
-            int[][] recorrido = {
-                    {0, 184, 222, 177, 216, 231, 120, 60, 300, 150, 80, 200},
-                    {184, 0, 45, 123, 128, 200, 52, 100, 250, 120, 60, 180},
-                    {222, 45, 0, 129, 121, 203, 15, 300, 50, 180, 90, 210},
-                    {177, 123, 129, 0, 46, 83, 250, 15, 200, 80, 30, 150},
-                    {216, 128, 121, 46, 0, 83, 100, 7, 150, 70, 20, 120},
-                    {231, 200, 203, 83, 83, 0, 20, 10, 120, 90, 40, 160},
-                    {120, 52, 15, 250, 100, 20, 0, 441, 180, 30, 70, 190},
-                    {60, 100, 300, 15, 7, 10, 441, 0, 250, 110, 50, 170},
-                    {300, 250, 50, 200, 150, 120, 180, 250, 0, 300, 130, 250},
-                    {150, 120, 180, 80, 70, 90, 30, 110, 300, 0, 160, 280},
-                    {80, 60, 90, 30, 20, 40, 70, 50, 130, 160, 0, 120},
-                    {200, 180, 210, 150, 120, 160, 190, 170, 250, 280, 120, 0}
-            };
-
-            int a = (int) Math.pow(4, recorrido.length);
-            solucion_Optimizada optima = new solucion_Optimizada(2*(recorrido.length-1), recorrido.length, 11,1,recorrido, a);
-            System.out.println(optima.toString());
-
-        }
-    }
+}

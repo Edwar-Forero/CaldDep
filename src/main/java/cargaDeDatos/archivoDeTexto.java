@@ -19,7 +19,7 @@ public class archivoDeTexto{
      */
     public static void main(String[] args){
         JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Obtener informacion");
+        fileChooser.setDialogTitle("ELIJA EL ARCHIVO A SOLUCIONAR");
 
         int result = fileChooser.showOpenDialog(null);
 

@@ -34,7 +34,7 @@ public class guardarDatosEnArchivo {
      */
     public void creacionFile(){
         JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Guardar solucion");
+        fileChooser.setDialogTitle("SELECIONE LA RUTA PARA GUARDAR LA SOLUCION");
         int result = fileChooser.showSaveDialog(null);
 
         if (result == JFileChooser.APPROVE_OPTION) {

@@ -241,15 +241,4 @@ public class solucion_Ingenua {
         }
         return acumularFilas.toString();
     }
-
-    public static void main(String[] args) {
-        int[][] recorrido = {
-                {0, 745, 665, 929},
-                {745, 0, 80, 337},
-                {665, 80, 0, 380},
-                {929, 337, 380, 0}
-        };
-        solucion_Ingenua ing = new solucion_Ingenua(2*(recorrido.length-1), recorrido.length, 3,1, recorrido);
-        System.out.println(ing.toString());
-    }
 }

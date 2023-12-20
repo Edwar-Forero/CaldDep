@@ -1,6 +1,9 @@
 package cargaDeDatos;
 
 import solucionIngenua.solucion_Ingenua;
+import solucionOptimizada.solucion_Optimizada;
+
+import javax.swing.*;
 
 /**
  * Esta clase permite cargar los datos de un archivo de texto y pasarlos a la clase solucion_Ingenua
@@ -100,22 +103,26 @@ public class CargaDatos {
      */
     public void soluciones(){
 
-        solucion_Ingenua sl = new solucion_Ingenua(2*(numeroEquipos-1),getNumeroEquipos(), getTamanoMaximo(), getTamanoMinimo(), getMatrizDistancias());
-        setSolIng(sl.toString());
+        // Crear cuadro de diálogo con dos botones
+        int opcion = JOptionPane.showOptionDialog(null, "Selecciona una opcion:", "Elegir el modo de solucion",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,
+                new Object[]{"Solucion Ingenua", "Solucion Optimizada"}, null);
+        // Realizar acciones según la opción seleccionada
+        if (opcion == JOptionPane.YES_OPTION) {
+            // Crear instancia de la clase solucion_Ingenua y pasarle los datos
+            solucion_Ingenua sl = new solucion_Ingenua(2 * (numeroEquipos - 1), getNumeroEquipos(), getTamanoMaximo(), getTamanoMinimo(), getMatrizDistancias());
+            setSolIng(sl.toString());
 
-        /*System.out.println("Solución Ingenua");
-        System.out.println(solucion_Ing);*/
+            // Guardar datos en archivo para solucion_Ingenua
+            guardarDatosEnArchivo guardarDatos = new guardarDatosEnArchivo(getNumeroEquipos(), getTamanoMinimo(), getTamanoMaximo(), getSolIng());
+            guardarDatos.creacionFile();
+        } else if (opcion == JOptionPane.NO_OPTION) {
+            // Si se selecciona "Solucion Optimizada"
+            int a = (int) Math.pow(4, getMatrizDistancias().length);
+            solucion_Optimizada slo = new solucion_Optimizada(2 * (numeroEquipos - 1), getNumeroEquipos(), getTamanoMaximo(), getTamanoMinimo(), getMatrizDistancias(), a);
+            guardarDatosEnArchivo guardarDatos2 = new guardarDatosEnArchivo(getNumeroEquipos(), getTamanoMinimo(), getTamanoMaximo(), slo.toString());
+            guardarDatos2.creacionFile();
+        }
 
-        guardarDatosEnArchivo guardarDatos = new guardarDatosEnArchivo(getNumeroEquipos(), getTamanoMinimo(), getTamanoMaximo(), getSolIng());
-        guardarDatos.creacionFile();
-
-        /*new solucion_Optimizada(numeroEquipos, tamanoMinimo, tamanoMaximo, matrizDistancias);
-        setSolIng(sl.toString());
-
-        *//*System.out.println("Solución Ingenua");
-        System.out.println(solucion_Ing);*//*
-
-        guardarDatosEnArchivo guardarDatos = new guardarDatosEnArchivo(getNumeroEquipos(), getTamanoMinimo(), getTamanoMaximo(), getSolIng());
-        guardarDatos.creacionFile();*/
     }
 }
