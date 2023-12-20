@@ -113,6 +113,7 @@ public class CargaDatos {
             // Crear instancia de la clase solucion_Ingenua y pasarle los datos
             solucion_Ingenua sl = new solucion_Ingenua(2 * (numeroEquipos - 1), getNumeroEquipos(), getTamanoMaximo(), getTamanoMinimo(), getMatrizDistancias());
             setSolIng(sl.toString());
+            System.out.println(sl.toString());
 
             // Guardar datos en archivo para solucion_Ingenua
             guardarDatosEnArchivo guardarDatos = new guardarDatosEnArchivo(getNumeroEquipos(), getTamanoMinimo(), getTamanoMaximo(), getSolIng());
@@ -121,6 +122,7 @@ public class CargaDatos {
             // Si se selecciona "Solucion Optimizada"
             int a = (int) Math.pow(4, getMatrizDistancias().length);
             solucion_Optimizada slo = new solucion_Optimizada(2 * (numeroEquipos - 1), getNumeroEquipos(), getTamanoMaximo(), getTamanoMinimo(), getMatrizDistancias(), a);
+            System.out.println(slo.toString());
             guardarDatosEnArchivo guardarDatos2 = new guardarDatosEnArchivo(getNumeroEquipos(), getTamanoMinimo(), getTamanoMaximo(), slo.toString());
             guardarDatos2.creacionFile();
         }

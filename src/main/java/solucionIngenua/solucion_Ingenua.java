@@ -112,7 +112,6 @@ public class solucion_Ingenua {
             if ((totalR > actual || (totalR == 0)) && (minYMax(fechasEquipo))){
                 torneo = fechasEquipo.clone();
                 totalR = actual;
-                System.out.println("Recorrido: "+totalR);
             }
         }
         else {
