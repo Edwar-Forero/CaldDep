@@ -2,7 +2,7 @@
  * * @author Santiago Anibal Carrillo Torres, Edwar Yamir Forero Blanco, Juan Eduardo Calderon Jaramillo
  */
 package cargaDeDatos;
-import javax.swing.*;
+import javax.swing.JFileChooser;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;

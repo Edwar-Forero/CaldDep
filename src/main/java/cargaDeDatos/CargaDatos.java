@@ -7,7 +7,7 @@ package cargaDeDatos;
 import solucionIngenua.solucion_Ingenua;
 import solucionOptimizada.solucion_Optimizada;
 
-import javax.swing.*;
+import javax.swing.JOptionPane;
 
 /**
  * Esta clase permite cargar los datos de un archivo de texto y pasarlos a la clase solucion_Ingenua
