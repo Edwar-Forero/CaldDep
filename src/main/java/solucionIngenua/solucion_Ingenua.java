@@ -1,3 +1,7 @@
+/**
+ * @author Santiago Anibal Carrillo Torres, Edwar Yamir Forero Blanco, Juan Eduardo Calderon
+ */
+
 package solucionIngenua;
 
 import java.util.ArrayList;
@@ -5,7 +9,6 @@ import java.util.List;
 
 /**
  * Clase que se encarga de generar las fechas del torneo
- * @author Santiago A. Carrillo Torres, Edwar Y. Forero Blanco, Juan E. Calderon Jaramillo
  */
 public class solucion_Ingenua {
 
@@ -29,6 +32,7 @@ public class solucion_Ingenua {
      * @param columna número de teams de la matriz
      * @param max número máximo de partidos seguidos de un equipo
      * @param min número mínimo de partidos seguidos de un equipo
+     * @param matrizDistancias matriz con las distancias entre los equipos
      */
     public solucion_Ingenua(int fila, int columna, int max, int min, int [][] matrizDistancias) {
         this.enfrent = new int[fila][columna];

@@ -1,17 +1,24 @@
+/**
+ * @author Santiago Anibal Carrillo Torres, Edwar Yamir Forero Blanco, Juan Eduardo Calderon
+ */
+
 package cargaDeDatos;
 import javax.swing.JFileChooser;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.util.Arrays;
-
 
 /**
  * Esta clase permite cargar los datos de un archivo de texto
- *  * @author Santiago Anibal Carrillo Torres, Edwar Yamir Forero Blanco, Juan Eduardo Calderon
  */
 
 public class archivoDeTexto{
+
+    /**
+     * Constructor de la clase
+     */
+    public archivoDeTexto() {}
+
     /**
      * Este método permite cargar los datos de un archivo de texto
      * @param args argumentos de la línea de comandos

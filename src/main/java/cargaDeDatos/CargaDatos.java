@@ -1,3 +1,7 @@
+/**
+ * @author Santiago Anibal Carrillo Torres, Edwar Yamir Forero Blanco, Juan Eduardo Calderon
+ */
+
 package cargaDeDatos;
 
 import solucionIngenua.solucion_Ingenua;
@@ -7,8 +11,6 @@ import javax.swing.*;
 
 /**
  * Esta clase permite cargar los datos de un archivo de texto y pasarlos a la clase solucion_Ingenua
- * @author Santiago Anibal Carrillo Torres, Edwar Yamir Forero Blanco, Juan Eduardo Calderon Jaramillo
- *
  */
 public class CargaDatos {
     private int numeroEquipos;
@@ -16,6 +18,11 @@ public class CargaDatos {
     private int tamanoMaximo;
     private int[][] matrizDistancias;
     private String solucion_Ing;
+
+    /**
+     * Constructor de la clase
+     */
+    public CargaDatos() {}
 
     /**
      * Método setter para modificar las variables desde fuera de la clase

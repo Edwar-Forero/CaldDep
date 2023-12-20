@@ -1,11 +1,15 @@
+/**
+ * * @author Santiago Anibal Carrillo Torres, Edwar Yamir Forero Blanco, Juan Eduardo Calderon Jaramillo
+ */
 package cargaDeDatos;
 import javax.swing.*;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+
+
 /**
- *  * @author Santiago Anibal Carrillo Torres, Edwar Yamir Forero Blanco, Juan Eduardo Calderon Jaramillo
  * Clase que se encarga de guardar los datos de la solucion en un archivo de texto
  */
 public class guardarDatosEnArchivo {

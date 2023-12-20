@@ -33,6 +33,8 @@ public class solucion_Optimizada {
      * @param columna número de teams de la matriz
      * @param max número máximo de partidos seguidos de un equipo
      * @param min número mínimo de partidos seguidos de un equipo
+     * @param matrizDistancias recorridos para cada equipo
+     * @param limite número de permutaciones que se realizarán
      */
     public solucion_Optimizada(int fila, int columna, int max, int min, int [][] matrizDistancias, int limite) {
         this.enfrent = new int[fila][columna];
