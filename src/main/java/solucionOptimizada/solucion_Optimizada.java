@@ -3,52 +3,264 @@
  */
 package solucionOptimizada;
 
-
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 /**
  * Clase que se encarga de generar las fechas del torneo
  */
 public class solucion_Optimizada {
-    private int max, min;
-    int[][] prueba = new int[4][4];
-        /**
-         * Constructor de la clase que recibe los datos para generar las fechas del torneo
-         * @param max
-         * @param min
-         * @param equipos
-         */
-     public solucion_Optimizada( int max, int min, int equipos){
-            this.max = max;
-            this.min = min;
+
+    private int limitePermutaciones;
+    //Matriz que guarda las fechas del torneo
+    private int[][] torneo;
+    //Variable que guarda el recorrido total de los equipos
+    private int totalR=0;
+    //Matriz generada para guardar las fechas del torneo
+    private final int[][] enfrent;
+
+    //Número máximo y mínimo de partidos seguidos de un equipo y equipos del torneo respectivamente
+    private final int min, max, columna;
+    //Lista que guarda los equipos
+    List<Integer> teams;
+    //Recorridos para los equipos
+    private final int[][] recorridos;
+
+    /**
+     * Constructor de la clase que recibe los datos para generar las fechas del torneo
+     * @param fila número de fechas de la matriz
+     * @param columna número de teams de la matriz
+     * @param max número máximo de partidos seguidos de un equipo
+     * @param min número mínimo de partidos seguidos de un equipo
+     */
+    public solucion_Optimizada(int fila, int columna, int max, int min, int [][] matrizDistancias, int limite) {
+        this.enfrent = new int[fila][columna];
+        this.columna = columna;
+        this.min = min;
+        this.max = max;
+        this.recorridos = matrizDistancias;
+        this.limitePermutaciones = limite;
+
+        Vuelta();
+    }
+
+
+    /**
+     * Método que guarda los equipos
+     *
+     */
+    public void guardarEquipos() {
+        teams = new ArrayList<>();
+        for (int i = 0; i < this.columna; i++) {
+            teams.add(i);
         }
+    }
 
-        /**
-         * Método que genera las fechas del torneo
-         * @param prueba
-         */
-        public void matrizFechas ( int[][] prueba){
-            if (prueba.length <= 1) {
+    /**
+     * Método que genera fechas para la ida del torneo (No tiene en cuenta las distancias)
+     */
+    public void OrgFechas(){
+        guardarEquipos();
 
-            } else {
+        //Si el equipo es impar no se puede generar el torneo
+        if (this.columna % 2 != 0) {
+            System.exit(0);
+        }
+        else{
+            for (int i = 0; i < enfrent.length/2; i++) {
+                for (int j = 0; j < columna/2; j++) {
+                    // Los equipos se emparejan y juegan entre sí
+                    int equipo1 = teams.get(j);
+                    int equipo2 = teams.get(columna - j - 1);
+                    enfrent[i][equipo1] = equipo2 + 1; // El equipo1 juega en casa contra equipo2
+                    enfrent[i][equipo2] = -(equipo1 + 1); // El equipo2 juega fuera contra equipo1
+                }
+
+                // Rotar los equipos para la siguiente jornada
+                int primerEquipo = teams.remove(1);
+                teams.add(primerEquipo);
             }
         }
-        /**
+    }
+
+
+    /**
+     * Método que genera fechas para la vuelta del torneo (No tiene en cuenta las distancias)
+     */
+    public void Vuelta(){
+        //Agrego los valores de la ida
+        OrgFechas();
+        //Se recorre la otra mitad de la matriz
+        for (int nFechas = enfrent.length/2; nFechas < enfrent.length; nFechas++){
+            for (int nEquipos = 0; nEquipos < this.columna; nEquipos++) {
+                //Se asigna el valor de la ida a la vuelta con el valor contrario
+                enfrent[nFechas][nEquipos] = enfrent[nFechas-(enfrent.length/2)][nEquipos]*-1;
+            }
+        }
+
+        //Realizar permutaciones y encontrar el mejor torneo
+        permutaciones(enfrent, limitePermutaciones);
+    }
+
+    /**
+     * Método recursivo que permuta todas las fechas del torneo
+     * @param fechasEquipo matriz con las fechas del torneo
+     * @param limitePermutaciones número de permutaciones que se realizarán
+     */
+    public void permutaciones(int[][] fechasEquipo, int limitePermutaciones) {
+        Random rand = new Random();
+
+        for (int permutacion = 0; permutacion < limitePermutaciones; permutacion++) {
+            int fila1 = rand.nextInt(fechasEquipo.length);
+            int fila2 = rand.nextInt(fechasEquipo.length);
+
+            // Intercambiar la fila1 con la fila2
+            int[] temp = fechasEquipo[fila1];
+            fechasEquipo[fila1] = fechasEquipo[fila2];
+            fechasEquipo[fila2] = temp;
+
+            //System.out.println(Arrays.deepToString(fechasEquipo));
+            int actual = SumaRecorrido(fechasEquipo);
+            if ((totalR > actual || (totalR == 0)) && (minYMax(fechasEquipo))){
+                torneo = fechasEquipo.clone();
+                //System.out.println(Arrays.deepToString(torneo));
+                totalR = actual;
+            }
+        }
+    }
+
+    /**
+     * Método que suma el recorrido total de los teams en el torneo
+     * @param enfrent matriz con las fechas del torneo
+     * @return suma total del recorrido de un torneo
+     */
+    public int SumaRecorrido(int[][] enfrent){
+        int suma = 0;
+        int posicionEqui;
+        int posicionEqui2;
+        for (int nTeam = 0; nTeam < this.columna; nTeam++) {
+            for (int nFechas = 0; nFechas < enfrent.length - 1; nFechas++) {
+                //Inicie el torneo de visita
+                if (nFechas == 0 && enfrent[nFechas][nTeam] < 0){
+                    posicionEqui = nTeam;
+                    posicionEqui2 = (enfrent[nFechas][nTeam] * -1) - 1;
+                    suma += recorridos[posicionEqui][posicionEqui2];
+                }
+
+                //Tenga partidos de visitante seguidos
+                if (enfrent[nFechas][nTeam] < 0 && enfrent[nFechas + 1][nTeam] < 0) {
+                    posicionEqui = (enfrent[nFechas][nTeam] * -1) - 1;
+                    posicionEqui2 = (enfrent[nFechas + 1][nTeam] * -1) - 1;
+                    suma += recorridos[posicionEqui][posicionEqui2];
+                }
+
+                //Esté de local y vaya de visita
+                if (enfrent[nFechas][nTeam] > 0 && enfrent[nFechas + 1][nTeam] < 0) {
+                    posicionEqui = nTeam;
+                    posicionEqui2 = (enfrent[nFechas + 1][nTeam] * -1) - 1;
+                    suma += recorridos[posicionEqui][posicionEqui2];
+                }
+
+                //Esté de visita y vaya de local
+                if (enfrent[nFechas][nTeam] < 0 && enfrent[nFechas + 1][nTeam] > 0) {
+                    posicionEqui = (enfrent[nFechas][nTeam] * -1)-1;
+                    posicionEqui2 = nTeam;
+                    suma += recorridos[posicionEqui][posicionEqui2];
+                }
+
+                //Ultimo partido visitante y se devuelve a casa
+                if ((enfrent[nFechas+1][nTeam] < 0 && nFechas+1 == enfrent.length-1)) {
+                    posicionEqui = (enfrent[nFechas+1][nTeam] * -1)-1;
+                    posicionEqui2 = nTeam;
+                    suma += recorridos[posicionEqui][posicionEqui2];
+                }
+            }
+        }
+        return suma;
+    }
+
+
+    /**
+     * Método que valida que los teams no tengan más partidos seguidos de los permitidos
+     * @param enfrent matriz con las fechas del torneo
+     * @return true si los teams cumplen con min y max, false si no
+     */
+    public boolean minYMax(int[][] enfrent){
+        //Contador de partidos seguidos
+        int contPos, contNeg;
+        boolean permitido = true;
+        for (int nTeams = 0; nTeams < this.columna; nTeams++) {
+            //Se resetean los contadores
+            contPos=0;
+            contNeg=0;
+            for (int[] ints : enfrent) {
+                //Si el equipo es visitante se suma al contador de visitantes
+                if (ints[nTeams] < 0) {
+                    contPos = 0;
+                    contNeg++;
+                    //Si el contador de visitantes es mayor o menor a los permitidos se sale del ciclo
+                    if (contNeg > this.max || contNeg < this.min) {
+                        permitido = false;
+                        break;
+                    }
+                }
+                //Si el equipo es local se suma al contador de locales
+                else {
+                    contNeg = 0;
+                    contPos++;
+                    //Si el contador de locales es mayor o menor a los permitidos se sale del ciclo
+                    if (contPos > max || contPos < min) {
+                        permitido = false;
+                        break;
+                    }
+                }
+            }
+        }
+        return permitido;
+    }
+
+    /**
+     * Método que retorna la matriz con las fechas del torneo
+     * @return matriz con las fechas del torneo
+     */
+    @Override
+    public String toString() {
+        StringBuilder acumularFilas = new StringBuilder();
+        for (int[] ints : torneo) {
+            for (int anInt : ints) {
+                acumularFilas.append(anInt).append(" ");
+                //System.out.print(anInt + " ");
+            }
+            acumularFilas.append("\n");
+            //System.out.print("\n");
+        }
+        return acumularFilas.toString();
+    }
+
+    /**
          * Método que genera los recorridos de los equipos
          * @param args
          */
         public static void main (String[]args){
             int[][] recorrido = {
-                    {0, 745, 665, 929},
-                    {745, 0, 80, 337},
-                    {665, 80, 0, 380},
-                    {929, 337, 380, 0}
+                    {0, 184, 222, 177, 216, 231, 120, 60, 300, 150, 80, 200},
+                    {184, 0, 45, 123, 128, 200, 52, 100, 250, 120, 60, 180},
+                    {222, 45, 0, 129, 121, 203, 15, 300, 50, 180, 90, 210},
+                    {177, 123, 129, 0, 46, 83, 250, 15, 200, 80, 30, 150},
+                    {216, 128, 121, 46, 0, 83, 100, 7, 150, 70, 20, 120},
+                    {231, 200, 203, 83, 83, 0, 20, 10, 120, 90, 40, 160},
+                    {120, 52, 15, 250, 100, 20, 0, 441, 180, 30, 70, 190},
+                    {60, 100, 300, 15, 7, 10, 441, 0, 250, 110, 50, 170},
+                    {300, 250, 50, 200, 150, 120, 180, 250, 0, 300, 130, 250},
+                    {150, 120, 180, 80, 70, 90, 30, 110, 300, 0, 160, 280},
+                    {80, 60, 90, 30, 20, 40, 70, 50, 130, 160, 0, 120},
+                    {200, 180, 210, 150, 120, 160, 190, 170, 250, 280, 120, 0}
             };
-            solucion_Optimizada optima = new solucion_Optimizada(3, 1, recorrido.length);
-            //System.out.println(optima.toString());
 
-
-            //optima.matrizFechas(equipos, 2*(equipos-1));
+            int a = (int) Math.pow(4, recorrido.length);
+            solucion_Optimizada optima = new solucion_Optimizada(2*(recorrido.length-1), recorrido.length, 11,1,recorrido, a);
+            System.out.println(optima.toString());
 
         }
     }
-}

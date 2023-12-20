@@ -15,14 +15,13 @@ public class solucion_Ingenua {
     private int totalR=0;
     //Matriz generada para guardar las fechas del torneo
     private final int[][] enfrent;
-    //Número de equipos del torneo
-    private final int columna;
-    //Número máximo y mínimo de partidos seguidos de un equipo
-    private final int min, max;
+
+    //Número máximo y mínimo de partidos seguidos de un equipo y equipos del torneo respectivamente
+    private final int min, max, columna;
     //Lista que guarda los equipos
     List<Integer> teams;
     //Recorridos para los equipos
-    int[][] recorridos;
+    private final int[][] recorridos;
 
     /**
      * Constructor de la clase que recibe los datos para generar las fechas del torneo
@@ -38,7 +37,7 @@ public class solucion_Ingenua {
         this.max = max;
         this.recorridos = matrizDistancias;
 
-        MiniRecor();
+        Vuelta();
     }
 
 
@@ -65,15 +64,15 @@ public class solucion_Ingenua {
         }
         else{
             for (int i = 0; i < enfrent.length/2; i++) {
-                for (int j = 0; j < columna / 2; j++) {
-                    // Los teams se emparejan y juegan entre sí
+                for (int j = 0; j < columna/2; j++) {
+                    // Los equipos se emparejan y juegan entre sí
                     int equipo1 = teams.get(j);
                     int equipo2 = teams.get(columna - j - 1);
                     enfrent[i][equipo1] = equipo2 + 1; // El equipo1 juega en casa contra equipo2
                     enfrent[i][equipo2] = -(equipo1 + 1); // El equipo2 juega fuera contra equipo1
                 }
 
-                // Rotar los teams para la siguiente jornada
+                // Rotar los equipos para la siguiente jornada
                 int primerEquipo = teams.remove(1);
                 teams.add(primerEquipo);
             }
@@ -94,14 +93,9 @@ public class solucion_Ingenua {
                 enfrent[nFechas][nEquipos] = enfrent[nFechas-(enfrent.length/2)][nEquipos]*-1;
             }
         }
-    }
 
-
-    /**w
-     * Método que se encarga de llamar a la función para permutaciones
-     */
-    public void MiniRecor(){
-        Vuelta();
+        totalR = SumaRecorrido(enfrent);
+        //Realizar permutaciones y encontrar el mejor torneo
         permutaciones(enfrent, 0);
     }
 
@@ -112,17 +106,19 @@ public class solucion_Ingenua {
      */
     public void permutaciones(int[][] fechasEquipo, int nFecha){
         if (nFecha == fechasEquipo.length - 1) {
+            //Se calcula el recorrido total de los equipos
             int actual = SumaRecorrido(fechasEquipo);
+            //Se valida que el recorrido total sea menor al actual y que los equipos cumplan con los partidos seguidos
             if ((totalR > actual || (totalR == 0)) && (minYMax(fechasEquipo))){
-                torneo = new int[fechasEquipo.length][];
-                for(int i = 0; i < fechasEquipo.length; i++){
-                    torneo[i] = fechasEquipo[i].clone();
-                }
+                torneo = fechasEquipo.clone();
                 totalR = actual;
+                System.out.println("Recorrido: "+totalR);
             }
         }
         else {
             for (int i = nFecha; i < fechasEquipo.length; i++) {
+
+                //Intercambiar fechas
                 int[] temp = fechasEquipo[nFecha];
                 fechasEquipo[nFecha] = fechasEquipo[i];
                 fechasEquipo[i] = temp;
@@ -130,6 +126,7 @@ public class solucion_Ingenua {
                 //Generar permutaciones Random
                 permutaciones(fechasEquipo, nFecha + 1);
 
+                //Devuelve los partidos al estado original para analizar otras posibles permutaciones
                 temp = fechasEquipo[nFecha];
                 fechasEquipo[nFecha] = fechasEquipo[i];
                 fechasEquipo[i] = temp;
@@ -137,56 +134,54 @@ public class solucion_Ingenua {
         }
     }
 
-
     /**
      * Método que suma el recorrido total de los teams en el torneo
      * @param enfrent matriz con las fechas del torneo
      * @return suma total del recorrido de un torneo
      */
     public int SumaRecorrido(int[][] enfrent){
-        int totalR = 0;
+        int suma = 0;
         int posicionEqui;
         int posicionEqui2;
         for (int nTeam = 0; nTeam < this.columna; nTeam++) {
             for (int nFechas = 0; nFechas < enfrent.length - 1; nFechas++) {
-
                 //Inicie el torneo de visita
                 if (nFechas == 0 && enfrent[nFechas][nTeam] < 0){
                     posicionEqui = nTeam;
                     posicionEqui2 = (enfrent[nFechas][nTeam] * -1) - 1;
-                    totalR += recorridos[posicionEqui][posicionEqui2];
+                    suma += recorridos[posicionEqui][posicionEqui2];
                 }
 
                 //Tenga partidos de visitante seguidos
                 if (enfrent[nFechas][nTeam] < 0 && enfrent[nFechas + 1][nTeam] < 0) {
                     posicionEqui = (enfrent[nFechas][nTeam] * -1) - 1;
                     posicionEqui2 = (enfrent[nFechas + 1][nTeam] * -1) - 1;
-                    totalR += recorridos[posicionEqui][posicionEqui2];
+                    suma += recorridos[posicionEqui][posicionEqui2];
                 }
 
                 //Esté de local y vaya de visita
                 if (enfrent[nFechas][nTeam] > 0 && enfrent[nFechas + 1][nTeam] < 0) {
                     posicionEqui = nTeam;
                     posicionEqui2 = (enfrent[nFechas + 1][nTeam] * -1) - 1;
-                    totalR += recorridos[posicionEqui][posicionEqui2];
+                    suma += recorridos[posicionEqui][posicionEqui2];
                 }
 
                 //Esté de visita y vaya de local
                 if (enfrent[nFechas][nTeam] < 0 && enfrent[nFechas + 1][nTeam] > 0) {
-                    posicionEqui = (enfrent[nFechas][nTeam] * -1) - 1;
+                    posicionEqui = (enfrent[nFechas][nTeam] * -1)-1;
                     posicionEqui2 = nTeam;
-                    totalR += recorridos[posicionEqui][posicionEqui2];
+                    suma += recorridos[posicionEqui][posicionEqui2];
                 }
 
                 //Ultimo partido visitante y se devuelve a casa
-                if (enfrent[nFechas][nTeam] < 0 && nFechas+1 == enfrent.length-1) {
-                    posicionEqui = (enfrent[nFechas][nTeam] * -1) - 1;
+                if ((enfrent[nFechas+1][nTeam] < 0 && nFechas+1 == enfrent.length-1)) {
+                    posicionEqui = (enfrent[nFechas+1][nTeam] * -1)-1;
                     posicionEqui2 = nTeam;
-                    totalR += recorridos[posicionEqui][posicionEqui2];
+                    suma += recorridos[posicionEqui][posicionEqui2];
                 }
             }
         }
-        return totalR;
+        return suma;
     }
 
 
@@ -196,24 +191,29 @@ public class solucion_Ingenua {
      * @return true si los teams cumplen con min y max, false si no
      */
     public boolean minYMax(int[][] enfrent){
+        //Contador de partidos seguidos
         int contPos, contNeg;
         boolean permitido = true;
-        for (int nTeams = 0; nTeams < this.columna; nTeams++){
+        for (int nTeams = 0; nTeams < this.columna; nTeams++) {
+            //Se resetean los contadores
             contPos=0;
             contNeg=0;
-
             for (int[] ints : enfrent) {
-
+                //Si el equipo es visitante se suma al contador de visitantes
                 if (ints[nTeams] < 0) {
                     contPos = 0;
                     contNeg++;
+                    //Si el contador de visitantes es mayor o menor a los permitidos se sale del ciclo
                     if (contNeg > this.max || contNeg < this.min) {
                         permitido = false;
                         break;
                     }
-                } else {
+                }
+                //Si el equipo es local se suma al contador de locales
+                else {
                     contNeg = 0;
                     contPos++;
+                    //Si el contador de locales es mayor o menor a los permitidos se sale del ciclo
                     if (contPos > max || contPos < min) {
                         permitido = false;
                         break;
@@ -243,16 +243,13 @@ public class solucion_Ingenua {
     }
 
     public static void main(String[] args) {
-        int prueba = 6;
         int[][] recorrido = {
-                {0, 184, 222, 177, 216, 231},
-                {184, 0, 45, 123, 128, 200},
-                {222, 45, 0, 129, 121, 203},
-                {177, 123, 129, 0,  46, 83},
-                {216, 128, 121,  46, 0, 75},
-                {231, 200, 203, 83, 75, 0}
+                {0, 745, 665, 929},
+                {745, 0, 80, 337},
+                {665, 80, 0, 380},
+                {929, 337, 380, 0}
         };
-        solucion_Ingenua ing = new solucion_Ingenua(2*(prueba-1),prueba, 6,1, recorrido);
+        solucion_Ingenua ing = new solucion_Ingenua(2*(recorrido.length-1), recorrido.length, 3,1, recorrido);
         System.out.println(ing.toString());
     }
 }
