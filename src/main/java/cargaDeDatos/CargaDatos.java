@@ -106,7 +106,8 @@ public class CargaDatos {
     }
 
     /**
-     * Método que permite crear una instancia de la clase solucion_Ingenua y pasarle los datos
+     * Método que permite crear una instancia de las clases solucion_Ingenua y solucion_Optimizada para asi transportar los datos
+     *
      */
     public void soluciones(){
 
