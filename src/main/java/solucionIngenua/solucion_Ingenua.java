@@ -42,7 +42,7 @@ public class solucion_Ingenua {
 
 
     /**
-     * Método que guarda los equipos
+     * Método que guarda los equipos en una lista
      *
      */
     public void guardarEquipos() {
