@@ -43,3 +43,6 @@ le va a pedir que seleccione la ruta donde desea guardar el archivo de texto con
 # Informe:
 Se encuentra en el repositorio github en la ruta: [Calendario.pdf](Calendario.pdf)
 
+# Documentacion HTML
+Se encuentra en [build/docs/javadoc/index.html](build/docs/javadoc/index.html)
+
